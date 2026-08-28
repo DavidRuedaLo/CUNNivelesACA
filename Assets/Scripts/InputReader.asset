@@ -22,21 +22,24 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 1
+    m_Priority: 0
   rotateCamRightAction:
     m_Name: Rotate Cam Right
-    m_Type: 1
+    m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 4164ce87-f9ed-4316-b824-6b12bba47644
+    m_Id: 28f794bf-2431-45e8-b664-74a8bc7f661d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-    m_Flags: 0
+    m_Flags: 1
+    m_Priority: 0
   rotateCamLeftAction:
     m_Name: Rotate Cam Left
     m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 2d64e642-b12b-4b49-8f4e-f0f73fe0e231
+    m_Id: 57405bce-f688-4557-a417-4ee35edab332
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+    m_Priority: 0
