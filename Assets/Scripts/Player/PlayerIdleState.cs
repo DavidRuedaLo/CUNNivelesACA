@@ -11,6 +11,9 @@ public class PlayerIdleState : PlayerBaseClass
     {
         player.inputReader.moveEvent += OnMoveInput;
         player.inputReader.interactEvent += OnInteractInput;
+        player.inputReader.jumpEvent += OnJumpInput;
+
+        player.ResetJumps();
     }
 
     public override void OnUpdate()
@@ -22,6 +25,7 @@ public class PlayerIdleState : PlayerBaseClass
     {
         player.inputReader.moveEvent -= OnMoveInput;
         player.inputReader.interactEvent -= OnInteractInput;
+        player.inputReader.jumpEvent -= OnJumpInput;
     }
 
     private void OnMoveInput(Vector2 direction)
@@ -39,6 +43,11 @@ public class PlayerIdleState : PlayerBaseClass
             player.pushState.SetInteractableBox(player.activePushableBox);
             player.stateMachine.ChangeState(player.pushState);
         }
+    }
+
+    private void OnJumpInput()
+    {
+        player.stateMachine.ChangeState(player.jumpStartState);
     }
 
 }

@@ -289,8 +289,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   moveSpeed: 5
+  jumpForce: 8
+  jumpCutMultiplier: 0.5
+  fallMultiplier: 4.5
+  maxFallSpeed: -20
+  maxJumps: 2
+  jumpsRemaining: 0
   inputReader: {fileID: 11400000, guid: 6830fabd8c54e6743928ab75ebf82101, type: 2}
   rb: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
   mainCamera: {fileID: 1812275367}
   cameraTransform: {fileID: 0}
   stateMachine: {fileID: 62809937}
@@ -996,7 +1005,7 @@ GameObject:
   - component: {fileID: 2141374250}
   - component: {fileID: 2141374249}
   - component: {fileID: 2141374248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1100,7 @@ Transform:
   m_GameObject: {fileID: 2141374247}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -43.8}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []

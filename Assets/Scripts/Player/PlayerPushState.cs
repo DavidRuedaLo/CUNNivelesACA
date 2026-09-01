@@ -8,7 +8,6 @@ public class PlayerPushState : PlayerBaseClass
     private Vector3 lockedAxis;
     private float pushSpeed = 4f;
     private Vector2 moveDirection;
-    //private Vector2 currentMoveInput;
 
     public void SetInteractableBox(PushableBox box)
     {
@@ -16,8 +15,8 @@ public class PlayerPushState : PlayerBaseClass
     }
 
     public override void OnEnter()
-    {
-        moveDirection = player.inputReader.moveAction.ReadValue<Vector2>();
+    {   
+        moveDirection = player.CurrentMoveInput;
 
         player.inputReader.moveEvent += OnMoveInput;
         player.inputReader.interactCanceledEvent += OnInteractReleased;
@@ -36,6 +35,7 @@ public class PlayerPushState : PlayerBaseClass
 
     public override void OnFixedUpdate()
     {
+        //lock the player's movement to the direction when entering state to avoid moving box to sides
         if (moveDirection.sqrMagnitude == 0) return;
 
         Vector3 forward = player.cameraTransform.forward;
@@ -51,6 +51,8 @@ public class PlayerPushState : PlayerBaseClass
 
         float alignment = Vector3.Dot(intendedMovement, lockedAxis);
 
+        //move the player and the box along the same path
+        //once directions are locked and aligned
         if (Mathf.Abs(alignment) > 0.05f)
         {
             Vector3 movementDelta = lockedAxis * (alignment * pushSpeed * Time.fixedDeltaTime);

@@ -12,6 +12,7 @@ public class InputReader : ScriptableObject
     public InputAction rotateCamRightAction;
     public InputAction rotateCamLeftAction;
     public InputAction interactAction;
+    public InputAction jumpAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
@@ -19,6 +20,8 @@ public class InputReader : ScriptableObject
     public event Action<bool> rotateCamLeftEvent;
     public event Action interactEvent;
     public event Action interactCanceledEvent;
+    public event Action jumpEvent;
+    public event Action jumpCanceledEvent;
 
     private void OnEnable()
     {
@@ -53,6 +56,14 @@ public class InputReader : ScriptableObject
             interactAction.performed += OnInteractPerformed;
             interactAction.canceled += OnInteractCanceled;
         }
+
+        jumpAction = inputActions.FindAction("Jump");
+        if(jumpAction != null)
+        {
+            jumpAction.Enable();
+            jumpAction.performed += OnJumpPerformed;
+            jumpAction.canceled += OnJumpCanceled;
+        }
     }
 
     private void OnDisable()
@@ -68,6 +79,9 @@ public class InputReader : ScriptableObject
 
         interactAction.performed -= OnInteractPerformed;
         interactAction.canceled -= OnInteractCanceled;
+
+        jumpAction.performed -= OnJumpPerformed;
+        jumpAction.canceled -= OnJumpCanceled;
     }
 
     //broadcast signals
@@ -95,6 +109,16 @@ public class InputReader : ScriptableObject
     private void OnInteractCanceled(InputAction.CallbackContext context)
     {
         interactCanceledEvent?.Invoke();
+    }
+
+    private void OnJumpPerformed(InputAction.CallbackContext context)
+    {
+        jumpEvent?.Invoke();
+    }
+
+    private void OnJumpCanceled(InputAction.CallbackContext context)
+    {
+        jumpCanceledEvent?.Invoke();
     }
 }
  

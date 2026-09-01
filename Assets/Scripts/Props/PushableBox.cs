@@ -7,7 +7,7 @@ public class PushableBox : MonoBehaviour
     private Camera mainCamera;
     public GameObject prompt;
     public bool beingPushed;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -54,6 +54,8 @@ public class PushableBox : MonoBehaviour
         rb.MovePosition(rb.position + movementDelta);
     }
 
+    //calculate the dot product between the box's and the player's movement vectors
+    //to determine which axis to lock
     public Vector3 GetLockedAxis(Vector3 playerPosition)
     {
         Vector3 directionToPlayer = (playerPosition - transform.position).normalized;
