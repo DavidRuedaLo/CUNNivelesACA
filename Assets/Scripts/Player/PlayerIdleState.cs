@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerBaseClass
     public override void OnEnter()
     {
         player.inputReader.moveEvent += OnMoveInput;
+        player.inputReader.interactEvent += OnInteractInput;
     }
 
     public override void OnUpdate()
@@ -20,6 +21,7 @@ public class PlayerIdleState : PlayerBaseClass
     public override void OnExit()
     {
         player.inputReader.moveEvent -= OnMoveInput;
+        player.inputReader.interactEvent -= OnInteractInput;
     }
 
     private void OnMoveInput(Vector2 direction)
@@ -27,6 +29,15 @@ public class PlayerIdleState : PlayerBaseClass
         if(direction != Vector2.zero)
         {
             player.stateMachine.ChangeState(player.moveState);
+        }
+    }
+
+    private void OnInteractInput()
+    {
+        if (player.activePushableBox != null)
+        {
+            player.pushState.SetInteractableBox(player.activePushableBox);
+            player.stateMachine.ChangeState(player.pushState);
         }
     }
 

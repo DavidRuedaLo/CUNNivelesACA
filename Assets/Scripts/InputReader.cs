@@ -11,12 +11,14 @@ public class InputReader : ScriptableObject
     public InputAction moveAction;
     public InputAction rotateCamRightAction;
     public InputAction rotateCamLeftAction;
+    public InputAction interactAction;
     
     //define events
-    public event Action<Vector2> moveEvent;
-    
+    public event Action<Vector2> moveEvent;    
     public event Action<bool> rotateCamRightEvent;
     public event Action<bool> rotateCamLeftEvent;
+    public event Action interactEvent;
+    public event Action interactCanceledEvent;
 
     private void OnEnable()
     {
@@ -43,6 +45,14 @@ public class InputReader : ScriptableObject
             rotateCamLeftAction.performed += OnRotateCamLeft;
             rotateCamLeftAction.canceled += OnRotateCamLeft;
         }
+
+        interactAction = inputActions.FindAction("Interact");
+        if(interactAction != null)
+        {
+            interactAction.Enable();
+            interactAction.performed += OnInteractPerformed;
+            interactAction.canceled += OnInteractCanceled;
+        }
     }
 
     private void OnDisable()
@@ -55,7 +65,9 @@ public class InputReader : ScriptableObject
 
         rotateCamLeftAction.performed -= OnRotateCamLeft;
         rotateCamLeftAction.canceled -= OnRotateCamLeft;
-        
+
+        interactAction.performed -= OnInteractPerformed;
+        interactAction.canceled -= OnInteractCanceled;
     }
 
     //broadcast signals
@@ -71,9 +83,18 @@ public class InputReader : ScriptableObject
         rotateCamRightEvent?.Invoke(context.ReadValueAsButton());
     }
 
-     private void OnRotateCamLeft(InputAction.CallbackContext context)
+    private void OnRotateCamLeft(InputAction.CallbackContext context)
     {
         rotateCamLeftEvent?.Invoke(context.ReadValueAsButton());
+    }
+
+    private void OnInteractPerformed(InputAction.CallbackContext context)
+    {
+        interactEvent?.Invoke();
+    }
+    private void OnInteractCanceled(InputAction.CallbackContext context)
+    {
+        interactCanceledEvent?.Invoke();
     }
 }
  

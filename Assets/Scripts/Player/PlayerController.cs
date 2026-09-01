@@ -7,23 +7,30 @@ public class PlayerController : MonoBehaviour
     
     [Header("Referemces")]
     public InputReader inputReader;
+    public Rigidbody rb;
 
     //Camera ref
     public Camera mainCamera;
     public Transform cameraTransform;
     //FSM setup
     public PlayerSM stateMachine;
+
+    //interactables
+    public PushableBox activePushableBox {get; private set;}
     
     //player states
     public PlayerIdleState idleState {get; private set;}
     public PlayerMoveState moveState {get; private set;}
+    public PlayerPushState pushState {get; private set;}
 
     void Awake()
     {
         idleState = new PlayerIdleState(this);
         moveState = new PlayerMoveState(this);
+        pushState = new PlayerPushState(this);
 
         stateMachine = GetComponent<PlayerSM>();
+        rb = GetComponent<Rigidbody>();
 
         if(stateMachine != null)
         {
@@ -68,5 +75,23 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PushableBox box = other.GetComponentInParent<PushableBox>();
+        if (box != null)
+        {
+            activePushableBox = box;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        PushableBox box = other.GetComponentInParent<PushableBox>();
+        if (box != null && box == activePushableBox)
+        {
+            activePushableBox = null;
+        }
     }
 }
