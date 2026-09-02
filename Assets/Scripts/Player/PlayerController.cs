@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     //interactables
     public PushableBox activePushableBox {get; private set;}
+    public Lever activeLever {get; private set;}
     
     //player states
     public PlayerIdleState idleState {get; private set;}
@@ -94,10 +95,18 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //detect pushable boxes
         PushableBox box = other.GetComponentInParent<PushableBox>();
         if (box != null)
         {
             activePushableBox = box;
+        }
+
+        //detect levers
+        Lever lever = other.GetComponentInParent<Lever>();
+        if (lever != null)
+        {
+            activeLever = lever;
         }
     }
 
@@ -107,6 +116,12 @@ public class PlayerController : MonoBehaviour
         if (box != null && box == activePushableBox)
         {
             activePushableBox = null;
+        }
+
+        Lever lever = other.GetComponentInParent<Lever>();
+        if (lever != null && lever == activeLever)
+        {
+            activeLever = null;
         }
     }
 

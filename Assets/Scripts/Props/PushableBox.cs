@@ -21,7 +21,8 @@ public class PushableBox : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        //make the prompt appear as a billboard
         if(prompt.activeInHierarchy)
         {
             prompt.transform.rotation = mainCamera.transform.rotation;

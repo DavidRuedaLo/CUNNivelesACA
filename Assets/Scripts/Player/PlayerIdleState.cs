@@ -37,11 +37,17 @@ public class PlayerIdleState : PlayerBaseClass
     }
 
     private void OnInteractInput()
-    {
+    {   
+        //check first for box interactions
         if (player.activePushableBox != null)
         {
             player.pushState.SetInteractableBox(player.activePushableBox);
             player.stateMachine.ChangeState(player.pushState);
+        }
+        //check for lever interactions
+        else if (player.activeLever != null)
+        {
+            player.activeLever.ToggleLever();
         }
     }
 
