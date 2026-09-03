@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 5c64c69218f81cb40881a0f84f0ebf6d
+guid: ed209dff8e529ef4ba894adcf7c40421
 ModelImporter:
   serializedVersion: 24501
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Atlas Gradient
+    second: {fileID: 2100000, guid: c57d8ce7d0f462d4caab2d785f43d617, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

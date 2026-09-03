@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PressurePlate : MonoBehaviour
+public class PressurePlateB : MonoBehaviour
 {
     private Animator anim;
     public enum PlateState
@@ -28,11 +28,7 @@ public class PressurePlate : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") 
-        || other.CompareTag("PushableBox") 
-        || other.CompareTag("PushableBoxRed")
-        || other.CompareTag("PushableBoxGreen")
-        || other.CompareTag("PushableBoxBlue"))
+        if (other.CompareTag("Player") || other.CompareTag("PushableBoxBlue"))
         {
             if (occupants.Count == 0)
             {
