@@ -11,6 +11,10 @@ public class Door : MonoBehaviour
         Deactivate = 3,
     }
 
+    [Header("Audio")]
+    public AudioClip activateSound;
+    public AudioClip deactivateSound;
+
     private bool isActive;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -36,10 +40,13 @@ public class Door : MonoBehaviour
         if (isActive)
         {   
             anim.SetInteger("DoorState", (int)DoorState.Activate);
+            SoundManager.Instance.Play3DSound(activateSound, transform.position);
+
         }
         else
         {   
             anim.SetInteger("DoorState", (int)DoorState.Deactivate);
+            SoundManager.Instance.Play3DSound(deactivateSound, transform.position);
         }
     }
 }

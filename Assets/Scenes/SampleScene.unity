@@ -744,6 +744,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1046590747 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7494202766261766096, guid: 300ba428a35a95b46b2d3d605710d1d2, type: 3}
+  m_PrefabInstance: {fileID: 7430552841258366651}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1093326131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1093326133}
+  - component: {fileID: 1093326132}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1093326132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093326131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ac190c52f43df42a6f1ca21232c5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundManager
+--- !u!4 &1093326133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093326131}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.36301, y: 0, z: 9.57348}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1253248229 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8953822413408714567, guid: 679a7a2ecb639d641b540989b1e4d731, type: 3}
@@ -755,6 +804,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2e7ab959d67e946ba8ec20016bc006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+--- !u!114 &1274454807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1411370090104373707, guid: 4a95afe0a12fca2439abaa6c7428f0e6, type: 3}
+  m_PrefabInstance: {fileID: 2838194726542887127}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 286ba7361dc83604db5e7ea22ffdd86a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Deployer
 --- !u!1 &1812275364
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1299,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Deployer
       objectReference: {fileID: 0}
+    - target: {fileID: 1411370090104373707, guid: 4a95afe0a12fca2439abaa6c7428f0e6, type: 3}
+      propertyPath: prefabToSpawn
+      value: 
+      objectReference: {fileID: 1046590747}
     - target: {fileID: 8821439777256754263, guid: 4a95afe0a12fca2439abaa6c7428f0e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.07
@@ -1576,13 +1640,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1274454807}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Deploy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Deployer, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1691028394880724510, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
+      propertyPath: onActivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3916823969035875989, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
       propertyPath: m_Name
       value: PressurePlate
       objectReference: {fileID: 0}
     - target: {fileID: 9014964324101875575, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.89
+      value: -17.16
       objectReference: {fileID: 0}
     - target: {fileID: 9014964324101875575, guid: 554ab3730977ac04cad232e73f97eb9b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1745,6 +1837,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 1093326133}
   - {fileID: 2141374251}
   - {fileID: 62809936}
   - {fileID: 1812275368}

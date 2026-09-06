@@ -7,6 +7,10 @@ public class Lever : MonoBehaviour
     private Camera mainCamera;
     public GameObject prompt;
 
+    [Header("Audio")]
+    public AudioClip activateSound;
+    public AudioClip deactivateSound;
+
     public enum LeverState
     {
         Off = 0,
@@ -67,11 +71,13 @@ public class Lever : MonoBehaviour
         if (isActive)
         {   
             anim.SetInteger("LeverState", (int)LeverState.Activate);
+            SoundManager.Instance.Play3DSound(activateSound, transform.position);
             onActivate?.Invoke();
         }
         else
         {   
             anim.SetInteger("LeverState", (int)LeverState.Deactivate);
+            SoundManager.Instance.Play3DSound(deactivateSound, transform.position);
             onDeactivate?.Invoke();
         }
     }

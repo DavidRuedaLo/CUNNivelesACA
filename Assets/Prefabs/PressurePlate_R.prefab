@@ -376,6 +376,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 457564dcdf962c540b4a93c487643759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PressurePlateR
+  activateSound: {fileID: 8300000, guid: 8786248475f8a7345b9255b20a3a873d, type: 3}
+  deactivateSound: {fileID: 8300000, guid: b0130a4264d10fb448647541aacd0cd3, type: 3}
   onActivate:
     m_PersistentCalls:
       m_Calls: []

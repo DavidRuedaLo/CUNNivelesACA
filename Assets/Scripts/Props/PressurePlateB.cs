@@ -5,6 +5,11 @@ using UnityEngine.Events;
 public class PressurePlateB : MonoBehaviour
 {
     private Animator anim;
+
+    [Header("Audio")]
+    public AudioClip activateSound;
+    public AudioClip deactivateSound;
+
     public enum PlateState
     {
         Off = 0,
@@ -61,11 +66,13 @@ public class PressurePlateB : MonoBehaviour
         if (isActive)
         {   
             anim.SetInteger("PlateState", (int)PlateState.Activate);
+            SoundManager.Instance.Play3DSound(activateSound, transform.position);
             onActivate?.Invoke();
         }
         else
         {   
             anim.SetInteger("PlateState", (int)PlateState.Deactivate);
+            SoundManager.Instance.Play3DSound(deactivateSound, transform.position);
             onDeactivate?.Invoke();
         }
     }

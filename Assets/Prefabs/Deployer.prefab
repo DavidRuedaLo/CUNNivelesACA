@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Deployer
   prefabToSpawn: {fileID: 0}
+  activateSound: {fileID: 8300000, guid: ddd883e057dfd6743aef417b4e3f4fc7, type: 3}
 --- !u!1 &905960767606286799
 GameObject:
   m_ObjectHideFlags: 0

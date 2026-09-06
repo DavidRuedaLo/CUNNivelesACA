@@ -4,6 +4,9 @@ public class Deployer : MonoBehaviour
 {
     public GameObject prefabToSpawn;
     private Transform spawnPoint;
+    
+    [Header("Audio")]
+    public AudioClip activateSound;
 
     private void Awake()
     {
@@ -22,5 +25,6 @@ public class Deployer : MonoBehaviour
         Quaternion rotation = spawnPoint.rotation;
 
         GameObject newInstance = Instantiate(prefabToSpawn, position, rotation);
+        SoundManager.Instance.Play3DSound(activateSound, transform.position);
     }
 }

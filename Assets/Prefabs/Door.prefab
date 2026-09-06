@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2e7ab959d67e946ba8ec20016bc006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
+  activateSound: {fileID: 8300000, guid: 8291682cff2257340957fc640e9efd21, type: 3}
+  deactivateSound: {fileID: 8300000, guid: 8291682cff2257340957fc640e9efd21, type: 3}
 --- !u!95 &1237457323804355867
 Animator:
   serializedVersion: 7
