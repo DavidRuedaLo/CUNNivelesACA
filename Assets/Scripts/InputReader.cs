@@ -14,6 +14,7 @@ public class InputReader : ScriptableObject
     public InputAction interactAction;
     public InputAction jumpAction;
     public InputAction fireAction;
+    public InputAction panelAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
@@ -24,6 +25,7 @@ public class InputReader : ScriptableObject
     public event Action jumpEvent;
     public event Action jumpCanceledEvent;
     public event Action fireEvent;
+    public event Action panelEvent;
 
     private void OnEnable()
     {
@@ -73,6 +75,13 @@ public class InputReader : ScriptableObject
             fireAction.Enable();
             fireAction.performed += OnFirePerformed;
         }
+
+        panelAction = inputActions.FindAction("PanelToggle");
+        if(panelAction != null)
+        {
+            panelAction.Enable();
+            panelAction.performed += OnPanelTogglePerformed;
+        }
     }
 
     private void OnDisable()
@@ -93,6 +102,12 @@ public class InputReader : ScriptableObject
         jumpAction.canceled -= OnJumpCanceled;
 
         fireAction.performed -= OnFirePerformed;
+        
+        if (panelAction != null)
+        {
+            panelAction.performed -= OnPanelTogglePerformed;
+        }
+        
     }
 
     //broadcast signals
@@ -135,6 +150,11 @@ public class InputReader : ScriptableObject
     private void OnFirePerformed(InputAction.CallbackContext context)
     {
         fireEvent?.Invoke(); 
+    }
+
+    private void OnPanelTogglePerformed(InputAction.CallbackContext context)
+    {
+        panelEvent?.Invoke();
     }
 }
  

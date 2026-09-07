@@ -65,6 +65,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "PanelToggle",
+                    "type": "Button",
+                    "id": "89583ae2-6480-4714-96b8-5c179a558795",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -252,6 +262,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "89e79a68-d701-4f99-9170-3e263cbba348",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PanelToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
