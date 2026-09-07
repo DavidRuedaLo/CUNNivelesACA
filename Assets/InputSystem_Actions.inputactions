@@ -17,19 +17,49 @@
                     "priority": 0
                 },
                 {
-                    "name": "Interact",
-                    "type": "Value",
-                    "id": "5a51270f-f48f-4196-9117-ccf849211f69",
+                    "name": "Rotate Cam Right",
+                    "type": "Button",
+                    "id": "c29e8104-4143-4a96-bad8-b116602db3c0",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true,
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Rotate Cam Left",
+                    "type": "Button",
+                    "id": "ae2d39d0-bb72-4056-868b-732735482adc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "6e69916a-c7df-4c24-a13d-dc0532838b8e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
                     "priority": 0
                 },
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "408f130a-eaf8-4783-bd79-e5ece2ff5e41",
+                    "id": "680ec255-dec1-4eeb-be24-804956b1eec0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Fire",
+                    "type": "Button",
+                    "id": "6458d08f-4664-4886-85cb-65cfe462351d",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -172,23 +202,56 @@
                 },
                 {
                     "name": "",
-                    "id": "1c04ea5f-b012-41d1-a6f7-02e963b52893",
+                    "id": "2f13611d-a542-4d53-9567-cafb2252b6ac",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Cam Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ad373f4-e2d1-43df-ad03-d37dc13d9a90",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotate Cam Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6dee1b8c-30d6-44ac-956b-6864babe40a5",
                     "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
+                    "groups": "",
                     "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "26f5d9c5-96c1-4f3e-bcb1-c2a192a720ec",
+                    "id": "e367cc10-f6cc-4b68-8230-b5784e2c2602",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b776f6f2-254d-47e2-ba25-85b90e589a05",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -715,78 +778,6 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Camera",
-            "id": "f5b31220-949c-4b7d-8945-c95c762b563d",
-            "actions": [
-                {
-                    "name": "Rotate Cam Right",
-                    "type": "Value",
-                    "id": "28f794bf-2431-45e8-b664-74a8bc7f661d",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true,
-                    "priority": 0
-                },
-                {
-                    "name": "Rotate Cam Left",
-                    "type": "Button",
-                    "id": "57405bce-f688-4557-a417-4ee35edab332",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "715639ad-e5f9-412d-b126-d03c7d83223b",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Rotate Cam Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ed722ff1-064f-43ec-bebf-c4d4dedbacf7",
-                    "path": "<Gamepad>/leftShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Rotate Cam Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "cfac1f8c-19ad-436a-973a-04f341fc0683",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Rotate Cam Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "475ba0e8-188a-41f7-9114-2a37f6592228",
-                    "path": "<Gamepad>/rightShoulder",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Rotate Cam Right",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

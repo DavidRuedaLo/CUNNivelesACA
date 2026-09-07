@@ -25,19 +25,19 @@ MonoBehaviour:
     m_Priority: 0
   rotateCamRightAction:
     m_Name: Rotate Cam Right
-    m_Type: 0
+    m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 28f794bf-2431-45e8-b664-74a8bc7f661d
+    m_Id: c29e8104-4143-4a96-bad8-b116602db3c0
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
-    m_Flags: 1
+    m_Flags: 0
     m_Priority: 0
   rotateCamLeftAction:
     m_Name: Rotate Cam Left
     m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 57405bce-f688-4557-a417-4ee35edab332
+    m_Id: ae2d39d0-bb72-4056-868b-732735482adc
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -45,9 +45,29 @@ MonoBehaviour:
     m_Priority: 0
   interactAction:
     m_Name: Interact
-    m_Type: 0
+    m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 5a51270f-f48f-4196-9117-ccf849211f69
+    m_Id: 6e69916a-c7df-4c24-a13d-dc0532838b8e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+    m_Priority: 0
+  jumpAction:
+    m_Name: Jump
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 680ec255-dec1-4eeb-be24-804956b1eec0
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+    m_Priority: 0
+  fireAction:
+    m_Name: Fire
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 6458d08f-4664-4886-85cb-65cfe462351d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

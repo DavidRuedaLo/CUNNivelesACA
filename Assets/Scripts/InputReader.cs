@@ -13,6 +13,7 @@ public class InputReader : ScriptableObject
     public InputAction rotateCamLeftAction;
     public InputAction interactAction;
     public InputAction jumpAction;
+    public InputAction fireAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
@@ -22,6 +23,7 @@ public class InputReader : ScriptableObject
     public event Action interactCanceledEvent;
     public event Action jumpEvent;
     public event Action jumpCanceledEvent;
+    public event Action fireEvent;
 
     private void OnEnable()
     {
@@ -64,6 +66,13 @@ public class InputReader : ScriptableObject
             jumpAction.performed += OnJumpPerformed;
             jumpAction.canceled += OnJumpCanceled;
         }
+
+        fireAction = inputActions.FindAction("Fire");
+        if(fireAction != null)
+        {
+            fireAction.Enable();
+            fireAction.performed += OnFirePerformed;
+        }
     }
 
     private void OnDisable()
@@ -82,6 +91,8 @@ public class InputReader : ScriptableObject
 
         jumpAction.performed -= OnJumpPerformed;
         jumpAction.canceled -= OnJumpCanceled;
+
+        fireAction.performed -= OnFirePerformed;
     }
 
     //broadcast signals
@@ -119,6 +130,11 @@ public class InputReader : ScriptableObject
     private void OnJumpCanceled(InputAction.CallbackContext context)
     {
         jumpCanceledEvent?.Invoke();
+    }
+
+    private void OnFirePerformed(InputAction.CallbackContext context)
+    {
+        fireEvent?.Invoke(); 
     }
 }
  

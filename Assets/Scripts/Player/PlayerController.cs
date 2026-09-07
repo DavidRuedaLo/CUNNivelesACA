@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -10,11 +11,20 @@ public class PlayerController : MonoBehaviour
     public float maxFallSpeed = -20f;
     public int maxJumps = 2;
     public int jumpsRemaining;
+
+    [Header("Equipment")]
+    public Transform weaponSocket;
+    private GameObject currentWeapon;
+    private Weapon equippedWeaponScript;
     
     [Header("Referemces")]
     public InputReader inputReader;
     public Rigidbody rb;
     public LayerMask groundLayer;
+    public CinemachineCamera cmCam;
+    
+    //safe positions for respawn
+    public Vector3 currentSpawnPoint;
 
     //Camera ref
     public Camera mainCamera;
@@ -48,6 +58,7 @@ public class PlayerController : MonoBehaviour
         stateMachine = GetComponent<PlayerSM>();
         rb = GetComponent<Rigidbody>();
 
+
         if(stateMachine != null)
         {
             stateMachine.Initialize(idleState);
@@ -60,6 +71,8 @@ public class PlayerController : MonoBehaviour
         //get the main camera transform for further stuff
         mainCamera = Camera.main;
         cameraTransform = mainCamera.transform;
+
+
        
         if(mainCamera != null)
         {
@@ -84,7 +97,7 @@ public class PlayerController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        currentSpawnPoint = transform.position;
     }
 
     // Update is called once per frame
@@ -178,4 +191,50 @@ public class PlayerController : MonoBehaviour
     {
         jumpsRemaining--;
     }
+
+    public void EquipWeapon(GameObject weaponPrefab)
+    {
+        if(currentWeapon != null)
+        {
+            Destroy(currentWeapon);
+        }
+
+        currentWeapon = Instantiate(weaponPrefab, weaponSocket);
+
+        currentWeapon.transform.localPosition = Vector3.zero;
+        currentWeapon.transform.localRotation = Quaternion.identity;
+
+        equippedWeaponScript = currentWeapon.GetComponent<Weapon>();
+    }
+
+    private void HandleFireInput()
+    {
+        if(equippedWeaponScript != null)
+        {
+            equippedWeaponScript.Fire();
+        }
+    }
+
+    public void Respawn()
+    {
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        transform.position = currentSpawnPoint;
+
+        if(cmCam != null)
+        {
+            cmCam.PreviousStateIsValid = false;
+        }
+    }
+    //enable/disable methods for global input
+    private void OnEnable()
+    {
+        inputReader.fireEvent += HandleFireInput;
+    }
+
+    private void OnDisable()
+    {
+        inputReader.fireEvent -= HandleFireInput;
+    }
+
 }
