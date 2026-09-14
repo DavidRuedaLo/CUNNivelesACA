@@ -17,26 +17,6 @@
                     "priority": 0
                 },
                 {
-                    "name": "Rotate Cam Right",
-                    "type": "Button",
-                    "id": "c29e8104-4143-4a96-bad8-b116602db3c0",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
-                    "name": "Rotate Cam Left",
-                    "type": "Button",
-                    "id": "ae2d39d0-bb72-4056-868b-732735482adc",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false,
-                    "priority": 0
-                },
-                {
                     "name": "Interact",
                     "type": "Button",
                     "id": "6e69916a-c7df-4c24-a13d-dc0532838b8e",
@@ -67,13 +47,23 @@
                     "priority": 0
                 },
                 {
-                    "name": "PanelToggle",
-                    "type": "Button",
-                    "id": "89583ae2-6480-4714-96b8-5c179a558795",
+                    "name": "Panel",
+                    "type": "Value",
+                    "id": "d4c5aa34-5f58-49b3-85cf-472b38eb9c39",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false,
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "Look",
+                    "type": "Value",
+                    "id": "3970e25e-9ce0-46a5-828a-771fe720ff36",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
                     "priority": 0
                 }
             ],
@@ -212,30 +202,19 @@
                 },
                 {
                     "name": "",
-                    "id": "2f13611d-a542-4d53-9567-cafb2252b6ac",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotate Cam Right",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7ad373f4-e2d1-43df-ad03-d37dc13d9a90",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Rotate Cam Left",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "6dee1b8c-30d6-44ac-956b-6864babe40a5",
                     "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cde3d0bc-026e-4443-ae16-5ee7b04998c8",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -256,8 +235,30 @@
                 },
                 {
                     "name": "",
+                    "id": "c634727c-7ceb-4eaf-ba00-a7c9dea702a4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "b776f6f2-254d-47e2-ba25-85b90e589a05",
                     "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8aeaa50d-330e-49a0-ad0e-2ad23f0bb6d0",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -273,6 +274,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "PanelToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4acdcf93-28ed-4a2a-be7b-8771bc02c189",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=0.5,y=0.5)",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6fe7bb1-9d6a-4546-b126-b1bd8c50af7e",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "547a60a1-9f98-4f3c-a557-5b04b7339458",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Panel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8af14170-bdb0-4089-a44a-8ef7830b7389",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Panel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

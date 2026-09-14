@@ -9,23 +9,21 @@ public class InputReader : ScriptableObject
     
     //get actions from the asset
     public InputAction moveAction;
-    public InputAction rotateCamRightAction;
-    public InputAction rotateCamLeftAction;
     public InputAction interactAction;
     public InputAction jumpAction;
     public InputAction fireAction;
     public InputAction panelAction;
+    public InputAction lookAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
-    public event Action<bool> rotateCamRightEvent;
-    public event Action<bool> rotateCamLeftEvent;
     public event Action interactEvent;
     public event Action interactCanceledEvent;
     public event Action jumpEvent;
     public event Action jumpCanceledEvent;
     public event Action fireEvent;
     public event Action panelEvent;
+    public event Action<Vector2> lookEvent;
 
     private void OnEnable()
     {
@@ -37,20 +35,12 @@ public class InputReader : ScriptableObject
             moveAction.canceled += OnMovePerformed;
         }
 
-        rotateCamRightAction = inputActions.FindAction("Rotate Cam Right");
-        if(rotateCamRightAction != null)
+        lookAction = inputActions.FindAction("Look");
+        if(lookAction != null)
         {
-            rotateCamRightAction.Enable();
-            rotateCamRightAction.performed += OnRotateCamRight;
-            rotateCamRightAction.canceled += OnRotateCamRight;
-        }
-        
-        rotateCamLeftAction = inputActions.FindAction("Rotate Cam Left");
-        if(rotateCamLeftAction != null)    
-        {
-            rotateCamLeftAction.Enable();
-            rotateCamLeftAction.performed += OnRotateCamLeft;
-            rotateCamLeftAction.canceled += OnRotateCamLeft;
+            lookAction.Enable();
+            lookAction.performed += OnLookPerformed;
+            lookAction.canceled += OnLookPerformed;
         }
 
         interactAction = inputActions.FindAction("Interact");
@@ -89,12 +79,6 @@ public class InputReader : ScriptableObject
         moveAction.performed -= OnMovePerformed;
         moveAction.canceled -= OnMovePerformed;
 
-        rotateCamRightAction.performed -= OnRotateCamRight;
-        rotateCamRightAction.canceled -= OnRotateCamRight;
-
-        rotateCamLeftAction.performed -= OnRotateCamLeft;
-        rotateCamLeftAction.canceled -= OnRotateCamLeft;
-
         interactAction.performed -= OnInteractPerformed;
         interactAction.canceled -= OnInteractCanceled;
 
@@ -108,6 +92,8 @@ public class InputReader : ScriptableObject
             panelAction.performed -= OnPanelTogglePerformed;
         }
         
+        lookAction.performed -= OnLookPerformed;
+        lookAction.canceled -= OnLookPerformed;
     }
 
     //broadcast signals
@@ -117,17 +103,6 @@ public class InputReader : ScriptableObject
 
         moveEvent?.Invoke(direction);
     }
-
-    private void OnRotateCamRight(InputAction.CallbackContext context)
-    {
-        rotateCamRightEvent?.Invoke(context.ReadValueAsButton());
-    }
-
-    private void OnRotateCamLeft(InputAction.CallbackContext context)
-    {
-        rotateCamLeftEvent?.Invoke(context.ReadValueAsButton());
-    }
-
     private void OnInteractPerformed(InputAction.CallbackContext context)
     {
         interactEvent?.Invoke();
@@ -155,6 +130,11 @@ public class InputReader : ScriptableObject
     private void OnPanelTogglePerformed(InputAction.CallbackContext context)
     {
         panelEvent?.Invoke();
+    }
+
+    private void OnLookPerformed(InputAction.CallbackContext context)
+    {
+        lookEvent?.Invoke(context.ReadValue<Vector2>());
     }
 }
  

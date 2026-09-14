@@ -3,63 +3,37 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {   
-    [Header("Camera rotation attributes")]
-    [SerializeField] private float stepCooldown = 0.5f;
-    [SerializeField] private float rotationSpeed = 10f;
-    private float timeSinceLastStep = 0f;
-    private bool isRotatingRight;
-    private bool isRotatingLeft;
-    private float targetAngle;
-
-    [Header("References")]
+    [SerializeField] private float lookSensitivity = 150f;
     public InputReader inputReader;
-    public PlayerController player;
     public CinemachineOrbitalFollow orbitalFollow;
+    private Vector2 currentLookInput;
 
-    private void Awake()
+    private void OnEnable()
     {
-        inputReader.rotateCamRightEvent += OnRotateCameraRight;
-        inputReader.rotateCamLeftEvent += OnRotateCameraLeft;
+        if(inputReader != null)
+        {
+            inputReader.lookEvent += OnLook;
+        }
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        if(orbitalFollow != null)
+        if(inputReader != null)
         {
-            targetAngle = orbitalFollow.HorizontalAxis.Value;
+            inputReader.lookEvent -= OnLook;
         }
     }
 
     private void Update()
     {
-        timeSinceLastStep += Time.deltaTime;
-
-        if(timeSinceLastStep >= stepCooldown)
+        if (orbitalFollow != null && currentLookInput.sqrMagnitude > 0.01f)
         {
-            if(isRotatingRight)
-            {
-                targetAngle += 45f;
-                timeSinceLastStep = 0f;
-            }
-            else if(isRotatingLeft)
-            {
-                targetAngle -= 45f;
-                timeSinceLastStep = 0f;
-            }
+            orbitalFollow.HorizontalAxis.Value += currentLookInput.x * lookSensitivity * Time.deltaTime;
         }
-
-        float currentAngle = orbitalFollow.HorizontalAxis.Value;
-        float smoothedAngle = Mathf.LerpAngle(currentAngle, targetAngle, rotationSpeed * Time.deltaTime);
-        orbitalFollow.HorizontalAxis.Value = smoothedAngle;
     }
 
-    private void OnRotateCameraRight(bool isPressed)
+    private void OnLook(Vector2 lookDelta)
     {
-        isRotatingRight = isPressed;
-    }
-
-      private void OnRotateCameraLeft(bool isPressed)
-    {
-        isRotatingLeft = isPressed;
+        currentLookInput = lookDelta;
     }
 }
