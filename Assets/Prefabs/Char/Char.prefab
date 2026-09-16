@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8298503907462175097}
   - component: {fileID: 2994590914192123577}
   - component: {fileID: 3074448279366370518}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 3632792036527748792}
   - component: {fileID: 8950405944372307823}
   - component: {fileID: 2123974362420937996}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Char
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -283,6 +283,8 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  cmCam: {fileID: 0}
+  currentSpawnPoint: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 0}
   cameraTransform: {fileID: 0}
   stateMachine: {fileID: 2123974362420937996}
@@ -307,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5520484350474560550}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WeaponSocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}

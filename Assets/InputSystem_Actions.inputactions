@@ -47,7 +47,7 @@
                     "priority": 0
                 },
                 {
-                    "name": "Panel",
+                    "name": "PanelToggle",
                     "type": "Value",
                     "id": "d4c5aa34-5f58-49b3-85cf-472b38eb9c39",
                     "expectedControlType": "",
@@ -268,17 +268,6 @@
                 },
                 {
                     "name": "",
-                    "id": "89e79a68-d701-4f99-9170-3e263cbba348",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PanelToggle",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "4acdcf93-28ed-4a2a-be7b-8771bc02c189",
                     "path": "<Mouse>/delta",
                     "interactions": "",
@@ -306,7 +295,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Panel",
+                    "action": "PanelToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -317,7 +306,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Panel",
+                    "action": "PanelToggle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -133,7 +133,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""Panel"",
+                    ""name"": ""PanelToggle"",
                     ""type"": ""Value"",
                     ""id"": ""d4c5aa34-5f58-49b3-85cf-472b38eb9c39"",
                     ""expectedControlType"": """",
@@ -354,17 +354,6 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""89e79a68-d701-4f99-9170-3e263cbba348"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PanelToggle"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""4acdcf93-28ed-4a2a-be7b-8771bc02c189"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -392,7 +381,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Panel"",
+                    ""action"": ""PanelToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -403,7 +392,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Panel"",
+                    ""action"": ""PanelToggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1005,7 +994,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
-        m_Player_Panel = m_Player.FindAction("Panel", throwIfNotFound: true);
+        m_Player_PanelToggle = m_Player.FindAction("PanelToggle", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1104,7 +1093,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Fire;
-    private readonly InputAction m_Player_Panel;
+    private readonly InputAction m_Player_PanelToggle;
     private readonly InputAction m_Player_Look;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
@@ -1134,9 +1123,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Panel".
+        /// Provides access to the underlying input action "Player/PanelToggle".
         /// </summary>
-        public InputAction @Panel => m_Wrapper.m_Player_Panel;
+        public InputAction @PanelToggle => m_Wrapper.m_Player_PanelToggle;
         /// <summary>
         /// Provides access to the underlying input action "Player/Look".
         /// </summary>
@@ -1179,9 +1168,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Fire.started += instance.OnFire;
             @Fire.performed += instance.OnFire;
             @Fire.canceled += instance.OnFire;
-            @Panel.started += instance.OnPanel;
-            @Panel.performed += instance.OnPanel;
-            @Panel.canceled += instance.OnPanel;
+            @PanelToggle.started += instance.OnPanelToggle;
+            @PanelToggle.performed += instance.OnPanelToggle;
+            @PanelToggle.canceled += instance.OnPanelToggle;
             @Look.started += instance.OnLook;
             @Look.performed += instance.OnLook;
             @Look.canceled += instance.OnLook;
@@ -1208,9 +1197,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Fire.started -= instance.OnFire;
             @Fire.performed -= instance.OnFire;
             @Fire.canceled -= instance.OnFire;
-            @Panel.started -= instance.OnPanel;
-            @Panel.performed -= instance.OnPanel;
-            @Panel.canceled -= instance.OnPanel;
+            @PanelToggle.started -= instance.OnPanelToggle;
+            @PanelToggle.performed -= instance.OnPanelToggle;
+            @PanelToggle.canceled -= instance.OnPanelToggle;
             @Look.started -= instance.OnLook;
             @Look.performed -= instance.OnLook;
             @Look.canceled -= instance.OnLook;
@@ -1543,12 +1532,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnFire(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Panel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "PanelToggle" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPanel(InputAction.CallbackContext context);
+        void OnPanelToggle(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Look" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
