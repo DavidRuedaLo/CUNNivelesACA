@@ -1,12 +1,17 @@
 using System;
 using UnityEngine;
 
-public class PushableBox : MonoBehaviour
+public class PushableBox : MonoBehaviour, IRespawnableProp
 {
     private Rigidbody rb;
     private Camera mainCamera;
     public GameObject prompt;
     public bool beingPushed;
+    
+    public float respawnOffset = 7.5f;
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
+    
 
     void Awake()
     {
@@ -17,6 +22,9 @@ public class PushableBox : MonoBehaviour
         mainCamera = Camera.main;
         prompt.SetActive(false);
         beingPushed = false;
+
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -72,5 +80,22 @@ public class PushableBox : MonoBehaviour
         {
             return transform.right;
         }
+    }
+
+    //method to be called when respawning after touching a deathzone
+    public void Respawn()
+    {   
+        Debug.Log("Touched the deathzone!");
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        Vector3 dropPosition = initialPosition;
+        dropPosition.y += respawnOffset;
+
+        transform.position = dropPosition;
+        transform.rotation = initialRotation;
     }
 }

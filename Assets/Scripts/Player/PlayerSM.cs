@@ -3,12 +3,22 @@ using UnityEngine;
 public class PlayerSM : MonoBehaviour
 {
     public IState currentState;
+    public PlayerController playerController;
+
+    private bool IsDebugLoggingEnabled()
+    {
+        return playerController != null && playerController.debugMode;
+    }
 
     public void Initialize(IState startingState)
     {
         currentState = startingState;
         currentState.OnEnter();
-        Debug.Log("Entering: " + currentState);
+
+        if (IsDebugLoggingEnabled())
+        {
+            Debug.Log("Entering: " + currentState);
+        }
     }
 
     void Update()
@@ -38,6 +48,9 @@ public class PlayerSM : MonoBehaviour
 
         currentState.OnEnter();
 
-        Debug.Log("Entering: " + currentState);
+        if (IsDebugLoggingEnabled())
+        {
+            Debug.Log("Entering: " + currentState);
+        }
     }
 }

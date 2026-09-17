@@ -27,9 +27,9 @@ MonoBehaviour:
     m_Name: Interact
     m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 6e69916a-c7df-4c24-a13d-dc0532838b8e
+    m_Id: 852140f2-7766-474d-8707-702459ba45f3
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Hold
     m_SingletonActionBindings: []
     m_Flags: 0
     m_Priority: 0
@@ -37,7 +37,7 @@ MonoBehaviour:
     m_Name: Jump
     m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 680ec255-dec1-4eeb-be24-804956b1eec0
+    m_Id: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -47,17 +47,17 @@ MonoBehaviour:
     m_Name: Fire
     m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 6458d08f-4664-4886-85cb-65cfe462351d
+    m_Id: 244c486f-7fee-4399-8aa3-84372bf61d9d
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
     m_Priority: 0
   panelAction:
-    m_Name: 
-    m_Type: 0
+    m_Name: Panel
+    m_Type: 1
     m_ExpectedControlType: 
-    m_Id: 40036ba6-433e-477d-ad64-208cf51d1e8d
+    m_Id: aca5e6de-80d1-4bb6-91bd-66cd9b1543ba
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
@@ -66,8 +66,8 @@ MonoBehaviour:
   lookAction:
     m_Name: Look
     m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 3970e25e-9ce0-46a5-828a-771fe720ff36
+    m_ExpectedControlType: Vector2
+    m_Id: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

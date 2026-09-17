@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {   
+    public bool debugMode;
     [Header("Player Attributes")]
     public float moveSpeed = 5f;
     public float jumpForce = 8f;
@@ -17,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private GameObject currentWeapon;
     private Weapon equippedWeaponScript;
     
-    [Header("Referemces")]
+    [Header("References")]
     public InputReader inputReader;
     public Rigidbody rb;
     public LayerMask groundLayer;
@@ -61,33 +62,43 @@ public class PlayerController : MonoBehaviour
 
         if(stateMachine != null)
         {
+            stateMachine.playerController = this;
             stateMachine.Initialize(idleState);
         }
-        else
+        else if (debugMode)
         {
             Debug.Log("Can't find FSM for player!");
         }
         
         //get the main camera transform for further stuff
         mainCamera = Camera.main;
-        cameraTransform = mainCamera.transform;
+        if (mainCamera != null)
+        {
+            cameraTransform = mainCamera.transform;
+        }
 
 
        
         if(mainCamera != null)
         {
-            Debug.Log("Found main camera!");
+            if (debugMode)
+            {
+                Debug.Log("Found main camera!");
+            }
             
             if(cameraTransform != null)
             {
-                Debug.Log("Found main camera transform!");
+                if (debugMode)
+                {
+                    Debug.Log("Found main camera transform!");
+                }
             }
-            else
+            else if (debugMode)
             {
                 Debug.Log("Can't find main camera transform!");
             }
         }
-        else
+        else if (debugMode)
         {
             Debug.Log("Can't find main camera to attach!");
         }
