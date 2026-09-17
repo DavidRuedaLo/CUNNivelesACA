@@ -36,4 +36,19 @@ public class CameraController : MonoBehaviour
     {
         currentLookInput = lookDelta;
     }
+
+    //method to snap camera in transitions
+    public void SnapCameraToRotation(Quaternion newRotation)
+    {
+        if(orbitalFollow != null)
+        {
+            orbitalFollow.HorizontalAxis.Value = newRotation.eulerAngles.y;
+
+            CinemachineCamera vcam = orbitalFollow.GetComponent<CinemachineCamera>();
+            if (vcam != null)
+            {
+                vcam.PreviousStateIsValid = false;
+            }
+        }
+    }
 }

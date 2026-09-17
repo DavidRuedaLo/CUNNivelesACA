@@ -66,7 +66,7 @@ public class InputReader : ScriptableObject
             fireAction.performed += OnFirePerformed;
         }
 
-        panelAction = inputActions.FindAction("PanelToggle");
+        panelAction = inputActions.FindAction("Panel");
         if(panelAction != null)
         {
             panelAction.Enable();
@@ -135,6 +135,17 @@ public class InputReader : ScriptableObject
     private void OnLookPerformed(InputAction.CallbackContext context)
     {
         lookEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    //methods to disable player input when needed
+    public void DisablePlayerInput()
+    {
+        inputActions.FindActionMap("Player")?.Disable();
+    }
+
+    public void EnablePlayerInput()
+    {
+        inputActions.FindActionMap("Player")?.Enable();
     }
 }
  
