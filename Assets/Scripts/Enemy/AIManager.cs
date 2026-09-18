@@ -1,10 +1,14 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Rendering.Universal;
 
 public class AIManager : MonoBehaviour
 {
     public float detectRadius, attackRadius;
+    public float rotationSpeed;
+    private bool isAttacking = false;
+    public LayerMask layerMask;
 
     public NavMeshAgent agent;
     public Transform[] waypoints;
@@ -14,7 +18,12 @@ public class AIManager : MonoBehaviour
 
     public enum State { Patrol, Pursuit, Attack}
     public State currentState = State.Patrol;
-    
+
+    public Weapon gun;
+
+    private Coroutine shoot;
+
+
     void Start()
     {
         
@@ -42,14 +51,14 @@ public class AIManager : MonoBehaviour
                 if (distance <= attackRadius) currentState = State.Attack;
                 else if (distance > detectRadius)
                 {
-                    agent.SetDestination(waypoints[0].position);
+                    agent.SetDestination(waypoints[currentWaypoint].position);
                     currentState = State.Patrol;
                 }
                 break;
 
             case State.Attack:
-                agent.stoppingDistance = attackRadius - 0.5f;
                 if (distance > attackRadius) currentState = State.Pursuit;
+                Attack(distance);
                 break;
 
             default:
@@ -65,6 +74,30 @@ public class AIManager : MonoBehaviour
             currentWaypoint = (currentWaypoint + 1) % waypoints.Length;
             agent.SetDestination(waypoints[currentWaypoint].position);
         }
+    }
+
+    void Attack(float dist)
+    {
+        agent.stoppingDistance = attackRadius - 0.1f;
+        //transform.LookAt(player);
+        Vector3 targetDirection = player.position - transform.position;
+        float speed = rotationSpeed / dist * rotationSpeed;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), speed * Time.deltaTime);
+
+        if (Physics.Raycast(gun.firePoint.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, attackRadius)){
+            if (!isAttacking && hit.collider.gameObject.CompareTag("Player")) shoot = StartCoroutine(Shoot());
+            Debug.DrawRay(gun.firePoint.position, transform.TransformDirection(Vector3.forward) * attackRadius, Color.red);
+        }
+        else Debug.DrawRay(gun.firePoint.position, transform.TransformDirection(Vector3.forward) * attackRadius, Color.blue);
+
+    }
+
+    public IEnumerator Shoot()
+    {
+        isAttacking = true;
+        gun.Fire();
+        yield return new WaitForSeconds(1f);
+        isAttacking = false;
     }
 
     private void OnDrawGizmosSelected()
