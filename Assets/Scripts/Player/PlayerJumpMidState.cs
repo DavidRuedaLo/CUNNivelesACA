@@ -10,7 +10,13 @@ public class PlayerJumpMidState : PlayerBaseClass
     public override void OnEnter()
     {
         player.inputReader.jumpEvent += OnAirJumpInput;
+
+        if (player.anim != null)
+        {
+            player.anim.CrossFadeInFixedTime("Jump_Air", 0.1f);
+        }
     }
+
 
     public override void OnUpdate()
     {

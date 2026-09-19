@@ -7,13 +7,23 @@ public class PlayerIdleState : PlayerBaseClass
         
     }
 
+    private readonly int speedHash = Animator.StringToHash("Speed");
+
     public override void OnEnter()
     {
         player.inputReader.moveEvent += OnMoveInput;
         player.inputReader.interactEvent += OnInteractInput;
         player.inputReader.jumpEvent += OnJumpInput;
+        player.inputReader.aimEvent += OnAimInput;
+        
 
         player.ResetJumps();
+
+        if(player.anim != null)
+        {
+            player.anim.SetFloat(speedHash, 0f);
+            player.anim.CrossFadeInFixedTime("Locomotion", 0.1f);
+        }
     }
 
     public override void OnUpdate()
@@ -26,6 +36,7 @@ public class PlayerIdleState : PlayerBaseClass
         player.inputReader.moveEvent -= OnMoveInput;
         player.inputReader.interactEvent -= OnInteractInput;
         player.inputReader.jumpEvent -= OnJumpInput;
+        player.inputReader.aimEvent -= OnAimInput;
     }
 
     private void OnMoveInput(Vector2 direction)
@@ -54,6 +65,11 @@ public class PlayerIdleState : PlayerBaseClass
     private void OnJumpInput()
     {
         player.stateMachine.ChangeState(player.jumpStartState);
+    }
+
+    private void OnAimInput()
+    {
+        player.stateMachine.ChangeState(player.aimState);
     }
 
 }

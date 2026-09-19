@@ -73,3 +73,13 @@ MonoBehaviour:
     m_SingletonActionBindings: []
     m_Flags: 1
     m_Priority: 0
+  aimAction:
+    m_Name: Aim
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 97f14e91-fc0e-4ea0-a946-bd68d109af8b
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+    m_Priority: 0

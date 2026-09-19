@@ -2,16 +2,29 @@ using UnityEngine;
 
 public class PlayerJumpEndState : PlayerBaseClass
 {
+    private float landingTimer;
     public PlayerJumpEndState(PlayerController player) : base(player)
     {
     }
 
     public override void OnEnter()
     {
-        //change to idlestate instantly for now since there's no animation state yet
-        if(player.IsGrounded())
+        landingTimer = 0f;
+
+        if(player.anim != null)
         {
-            if(player.CurrentMoveInput.sqrMagnitude > 0f)
+            player.anim.CrossFadeInFixedTime("Jump_Land", 0.05f);
+        }
+
+        player.ResetJumps();
+    }
+
+    public override void OnUpdate()
+    {
+        landingTimer += Time.deltaTime;
+        if (landingTimer >= player.landingDuration)
+        {
+            if(player.CurrentMoveInput != Vector2.zero)
             {
                 player.stateMachine.ChangeState(player.moveState);
             }
@@ -20,7 +33,14 @@ public class PlayerJumpEndState : PlayerBaseClass
                 player.stateMachine.ChangeState(player.idleState);
             }
         }
+    }
 
-        player.ResetJumps();
+    public override void OnFixedUpdate()
+    {
+        if(player.rb != null)
+        {
+            Vector3 currentVelocity = player.rb.linearVelocity;
+            player.rb.linearVelocity = new Vector3(0f, currentVelocity.y, 0f);
+        }
     }
 }
