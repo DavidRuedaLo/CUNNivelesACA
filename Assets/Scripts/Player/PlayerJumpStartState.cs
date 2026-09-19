@@ -16,6 +16,11 @@ public class PlayerJumpStartState : PlayerBaseClass
         player.rb.linearVelocity = new Vector3(player.rb.linearVelocity.x, player.jumpForce, player.rb.linearVelocity.z);
 
         player.ConsumeJump();
+
+        if (player.anim != null)
+        {
+            player.anim.CrossFadeInFixedTime("Jump_Start", 0.1f);
+        }
     }
 
     public override void OnUpdate()

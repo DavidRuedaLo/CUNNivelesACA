@@ -14,6 +14,7 @@ public class InputReader : ScriptableObject
     public InputAction fireAction;
     public InputAction panelAction;
     public InputAction lookAction;
+    public InputAction aimAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
@@ -24,6 +25,8 @@ public class InputReader : ScriptableObject
     public event Action fireEvent;
     public event Action panelEvent;
     public event Action<Vector2> lookEvent;
+    public event Action aimEvent;
+    public event Action aimCanceledEvent;
 
     private void OnEnable()
     {
@@ -72,6 +75,16 @@ public class InputReader : ScriptableObject
             panelAction.Enable();
             panelAction.performed += OnPanelTogglePerformed;
         }
+
+        aimAction = inputActions.FindAction("Aim");
+        {
+            if(aimAction != null)
+            {
+                aimAction.Enable();
+                aimAction.performed += OnAimPerformed;
+                aimAction.canceled += OnAimCanceled;
+            }
+        }
     }
 
     private void OnDisable()
@@ -94,6 +107,12 @@ public class InputReader : ScriptableObject
         
         lookAction.performed -= OnLookPerformed;
         lookAction.canceled -= OnLookPerformed;
+
+        if (aimAction != null)
+        {
+            aimAction.performed -= OnAimPerformed;
+            aimAction.canceled -= OnAimCanceled;
+        }        
     }
 
     //broadcast signals
@@ -135,6 +154,16 @@ public class InputReader : ScriptableObject
     private void OnLookPerformed(InputAction.CallbackContext context)
     {
         lookEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    private void OnAimPerformed(InputAction.CallbackContext context)
+    {
+        aimEvent?.Invoke();
+    }
+
+    private void OnAimCanceled(InputAction.CallbackContext context)
+    {
+        aimCanceledEvent?.Invoke();
     }
 
     //methods to disable player input when needed

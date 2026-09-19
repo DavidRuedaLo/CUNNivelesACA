@@ -32,7 +32,7 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -60,6 +60,16 @@
                     "name": "Panel",
                     "type": "Button",
                     "id": "aca5e6de-80d1-4bb6-91bd-66cd9b1543ba",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Aim",
+                    "type": "Button",
+                    "id": "97f14e91-fc0e-4ea0-a946-bd68d109af8b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -329,6 +339,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Panel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "efc90fdc-8171-4a5a-8c40-466022e870c0",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dc640037-544a-4c86-a967-ee906ea40fc4",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public float maxFallSpeed = -20f;
     public int maxJumps = 2;
     public int jumpsRemaining;
+    public float landingDuration = 0.3f;
+    public float sphereRadius = 0.3f;
+    public float castDistance = 1.1f;
 
     [Header("Equipment")]
     public Transform weaponSocket;
@@ -23,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
     public LayerMask groundLayer;
     public CinemachineCamera cmCam;
+    public Animator anim;
     
     //safe positions for respawn
     public Vector3 currentSpawnPoint;
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public PlayerJumpStartState jumpStartState {get; private set;}
     public PlayerJumpMidState jumpMidState {get; private set;}
     public PlayerJumpEndState jumpEndState {get; private set;}
+    public PlayerAimState aimState {get; private set;}
 
     void Awake()
     {
@@ -55,9 +60,11 @@ public class PlayerController : MonoBehaviour
         jumpStartState = new PlayerJumpStartState(this);
         jumpMidState = new PlayerJumpMidState(this);
         jumpEndState = new PlayerJumpEndState(this);
+        aimState = new PlayerAimState(this);
 
         stateMachine = GetComponent<PlayerSM>();
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
 
 
         if(stateMachine != null)
@@ -151,10 +158,6 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        float sphereRadius = 0.3f;
-
-        float castDistance = 1.1f;
-
         return Physics.SphereCast(transform.position, sphereRadius, Vector3.down,
         out RaycastHit hit, castDistance, groundLayer);
     }
@@ -218,14 +221,6 @@ public class PlayerController : MonoBehaviour
         equippedWeaponScript = currentWeapon.GetComponent<Weapon>();
     }
 
-    private void HandleFireInput()
-    {
-        if(equippedWeaponScript != null)
-        {
-            equippedWeaponScript.Fire();
-        }
-    }
-
     public void Respawn()
     {
         rb.linearVelocity = Vector3.zero;
@@ -237,15 +232,31 @@ public class PlayerController : MonoBehaviour
             cmCam.PreviousStateIsValid = false;
         }
     }
-    //enable/disable methods for global input
-    private void OnEnable()
+
+    //weapon handling
+
+    public void FireWeapon()
     {
-        inputReader.fireEvent += HandleFireInput;
+        if(equippedWeaponScript != null)
+        {
+            equippedWeaponScript.Fire();
+        }
     }
 
-    private void OnDisable()
+    public void ToggleWeaponLaser(bool isActive)
     {
-        inputReader.fireEvent -= HandleFireInput;
+        if(equippedWeaponScript != null)
+        {
+            equippedWeaponScript.ToggleLaser(isActive);
+        }
+    }
+
+    public void UpdateWeaponLaser()
+    {
+        if(equippedWeaponScript != null)
+        {
+            equippedWeaponScript.UpdateLaser();
+        }
     }
 
 }
