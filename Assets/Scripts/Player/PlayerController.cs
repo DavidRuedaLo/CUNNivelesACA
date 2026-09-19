@@ -1,10 +1,18 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.Assemblies;
 
 public class PlayerController : MonoBehaviour
 {   
     public bool debugMode;
-    [Header("Player Attributes")]
+    
+    [Space(15)]
+    [Header("Player Health Attributes")]
+    public float maxHP = 10f;
+    public float currentHP;
+
+    [Space(15)]
+    [Header("Player Movement Attributes")]
     public float moveSpeed = 5f;
     public float jumpForce = 8f;
     public float jumpCutMultiplier = 0.5f;
@@ -16,11 +24,13 @@ public class PlayerController : MonoBehaviour
     public float sphereRadius = 0.3f;
     public float castDistance = 1.1f;
 
+    [Space(15)]
     [Header("Equipment")]
     public Transform weaponSocket;
     private GameObject currentWeapon;
     private Weapon equippedWeaponScript;
     
+    [Space(15)]
     [Header("References")]
     public InputReader inputReader;
     public Rigidbody rb;
@@ -116,6 +126,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         currentSpawnPoint = transform.position;
+        currentHP = maxHP;
     }
 
     // Update is called once per frame
@@ -227,6 +238,8 @@ public class PlayerController : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         transform.position = currentSpawnPoint;
 
+        currentHP = maxHP;
+
         if(cmCam != null)
         {
             cmCam.PreviousStateIsValid = false;
@@ -256,6 +269,20 @@ public class PlayerController : MonoBehaviour
         if(equippedWeaponScript != null)
         {
             equippedWeaponScript.UpdateLaser();
+        }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        currentHP -= damageAmount;
+        if (currentHP <= 0f)
+        {
+            Respawn();
+        }
+        else
+        {
+            //place to maybe put hurt animations
+            Debug.Log("Player hit! Current HP: " + currentHP);
         }
     }
 
