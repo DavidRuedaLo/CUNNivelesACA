@@ -7,9 +7,8 @@ public class AIManager : MonoBehaviour
 {
     public float detectRadius, attackRadius;
     public float rotationSpeed;
+    public LayerMask layer;
     private bool isAttacking = false;
-    public LayerMask layerMask;
-
     public NavMeshAgent agent;
     public Transform[] waypoints;
     public int currentWaypoint = 0;
@@ -84,7 +83,7 @@ public class AIManager : MonoBehaviour
         float speed = rotationSpeed / dist * rotationSpeed;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(targetDirection), speed * Time.deltaTime);
 
-        if (Physics.Raycast(gun.firePoint.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, attackRadius)){
+        if (Physics.Raycast(gun.firePoint.position, transform.TransformDirection(Vector3.forward), out RaycastHit hit, attackRadius, layer, QueryTriggerInteraction.Ignore)){
             if (!isAttacking && hit.collider.gameObject.CompareTag("Player")) shoot = StartCoroutine(Shoot());
             Debug.DrawRay(gun.firePoint.position, transform.TransformDirection(Vector3.forward) * attackRadius, Color.red);
         }

@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 3406811736311564996}
   - component: {fileID: 3537830359776481987}
   - component: {fileID: 6497357931968060598}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PushableBox
   m_TagString: PushableBox
   m_Icon: {fileID: 0}
@@ -222,6 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PushableBox
   prompt: {fileID: 5875090026007460836}
   beingPushed: 0
+  respawnOffset: 7.5
 --- !u!1001 &8250353940985444639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -289,6 +290,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6886210442675630326}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6236247192343137693}
   m_SourcePrefab: {fileID: 100100000, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
 --- !u!4 &8499871735067385588 stripped
 Transform:
@@ -321,3 +325,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.019999996, z: 0.019999996}
   m_Center: {x: 0, y: 0, z: 0.009999998}
+--- !u!208 &6236247192343137693
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132821634739291214}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0.010000001}
+  m_TimeToStationary: 0.5

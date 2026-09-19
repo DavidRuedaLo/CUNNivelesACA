@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PushableBox
   prompt: {fileID: 8101186657026407508}
   beingPushed: 0
+  respawnOffset: 7.5
 --- !u!1 &8101186657026407508
 GameObject:
   m_ObjectHideFlags: 0
@@ -293,6 +294,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5834114821322845168}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8385098047355404186}
   m_SourcePrefab: {fileID: 100100000, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
 --- !u!1 &7147403747723714117 stripped
 GameObject:
@@ -320,6 +324,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.019999996, z: 0.019999996}
   m_Center: {x: 0, y: 0, z: 0.009999998}
+--- !u!208 &8385098047355404186
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7147403747723714117}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.010000001, y: 0.010000001, z: 0.010000001}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0.010000001}
+  m_TimeToStationary: 0.5
 --- !u!4 &7528749171796231423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ee10fc7c18127454a81282dd5843cb8e, type: 3}
