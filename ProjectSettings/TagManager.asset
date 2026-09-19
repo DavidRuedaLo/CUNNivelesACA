@@ -8,6 +8,7 @@ TagManager:
   - PushableBoxRed
   - PushableBoxGreen
   - PushableBoxBlue
+  - PatrolZone
   layers:
   - Default
   - TransparentFX
