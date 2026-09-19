@@ -8,7 +8,8 @@ TagManager:
   - PushableBoxRed
   - PushableBoxGreen
   - PushableBoxBlue
-  - PatrolZone
+  - PlayerBullet
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

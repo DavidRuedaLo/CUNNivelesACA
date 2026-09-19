@@ -8,7 +8,8 @@ public class AIManager : MonoBehaviour
     public float detectRadius, attackRadius;
     public float rotationSpeed;
     public LayerMask layer;
-    private bool isAttacking = false, inPatrolZone = true;
+    public int hitPoints = 3;
+    private bool isAttacking = false;
     public NavMeshAgent agent;
     public Transform[] waypoints;
     public int currentWaypoint = 0;
@@ -20,21 +21,11 @@ public class AIManager : MonoBehaviour
 
     public Weapon gun;
 
-    private Coroutine shoot, returnToZone;
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("PatrolZone"))
-        {
-            Debug.Log("Exited patrol zone");
-            inPatrolZone = false;
-        }
-    }
+    private Coroutine shoot;
 
     void Update()
     {
         CheckState();
-        Debug.Log("Current state: " + currentState + "\nInPatrolZone: " + inPatrolZone);
     }
 
     public void CheckState()
@@ -50,25 +41,14 @@ public class AIManager : MonoBehaviour
                 break;
 
             case State.Pursuit:
-                if (inPatrolZone)
-                {
-                    agent.isStopped = false;
-                    agent.SetDestination(player.position);
-                    Aim(distance);
-                    if (distance <= attackRadius) currentState = State.Attack;
-                    if (distance > detectRadius)
-                    {
-                        agent.SetDestination(waypoints[currentWaypoint].position);
-                        currentState = State.Patrol;
-                    }
-                }
-                else
+                agent.isStopped = false;
+                agent.SetDestination(player.position);
+                Aim(distance);
+                if (distance <= attackRadius) currentState = State.Attack;
+                if (distance > detectRadius)
                 {
                     agent.SetDestination(waypoints[currentWaypoint].position);
-                    returnToZone = StartCoroutine(ReturnToZone());
-                    //if (!agent.pathPending)
-                    //{
-                    //}
+                    currentState = State.Patrol;
                 }
                 break;
 
@@ -121,11 +101,13 @@ public class AIManager : MonoBehaviour
         isAttacking = false;
     }
 
-    public IEnumerator ReturnToZone()
+    public void TakeDamage()
     {
-        yield return new WaitForSeconds(2f);
-        currentState = State.Patrol;
-        inPatrolZone = true;
+        hitPoints--;
+        if(hitPoints <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDrawGizmosSelected()
