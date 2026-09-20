@@ -1,9 +1,11 @@
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
-    public float speed = 25f;
+    public float speed = 15f;
     public float lifespan = 3f;
+    public float damage = 5f;
+
     private Rigidbody rb;
 
     void Awake()
@@ -21,23 +23,17 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTriggerEnter(Collider other)
     {
-        Destructible destructibleTarget = other.GetComponentInParent<Destructible>();
 
-        AIManager enemy = other.GetComponentInParent<AIManager>();
+        PlayerController target = other.GetComponentInParent<PlayerController>();
 
-        if (destructibleTarget != null)
+        if (target != null)
         {
-            destructibleTarget.Break();
-        }
-
-        if (enemy != null)
-        {
-            enemy.TakeDamage();
+            target.TakeDamage(damage);
         }
 
         Destroy(gameObject);

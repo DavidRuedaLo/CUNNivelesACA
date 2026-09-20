@@ -764,6 +764,7 @@ GameObject:
   - component: {fileID: 8467138246373438842}
   - component: {fileID: 4575356505122777691}
   - component: {fileID: 8604419277057437580}
+  - component: {fileID: 4901590630678875605}
   m_Layer: 0
   m_Name: BreakableWall
   m_TagString: Untagged
@@ -1118,6 +1119,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9976bb9a077ad14d964a710a2e1cc4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Destructible
+--- !u!208 &4901590630678875605
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4238411938608614138}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.49400002, y: 1.6580001, z: 4.309}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4281477310921596871
 GameObject:
   m_ObjectHideFlags: 0

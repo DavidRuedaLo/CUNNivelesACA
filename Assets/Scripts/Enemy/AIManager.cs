@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class AIManager : MonoBehaviour
@@ -13,6 +14,7 @@ public class AIManager : MonoBehaviour
     public NavMeshAgent agent;
     public Transform[] waypoints;
     public int currentWaypoint = 0;
+    public Slider healthBarSlider;
 
     public Transform player;
 
@@ -23,9 +25,17 @@ public class AIManager : MonoBehaviour
 
     private Coroutine shoot;
 
+    private Camera mainCamera;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
     void Update()
     {
         CheckState();
+        healthBarSlider.transform.rotation = mainCamera.transform.rotation;
     }
 
     public void CheckState()
@@ -104,6 +114,7 @@ public class AIManager : MonoBehaviour
     public void TakeDamage()
     {
         hitPoints--;
+        healthBarSlider.value--;
         if(hitPoints <= 0)
         {
             Destroy(gameObject);
