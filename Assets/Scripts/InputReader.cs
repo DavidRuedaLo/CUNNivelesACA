@@ -15,6 +15,7 @@ public class InputReader : ScriptableObject
     public InputAction panelAction;
     public InputAction lookAction;
     public InputAction aimAction;
+    public InputAction walkAction;
     
     //define events
     public event Action<Vector2> moveEvent;    
@@ -27,6 +28,8 @@ public class InputReader : ScriptableObject
     public event Action<Vector2> lookEvent;
     public event Action aimEvent;
     public event Action aimCanceledEvent;
+    public event Action walkEvent;
+    public event Action walkCanceledEvent;
 
     private void OnEnable()
     {
@@ -77,14 +80,21 @@ public class InputReader : ScriptableObject
         }
 
         aimAction = inputActions.FindAction("Aim");
+        if(aimAction != null)
         {
-            if(aimAction != null)
-            {
-                aimAction.Enable();
-                aimAction.performed += OnAimPerformed;
-                aimAction.canceled += OnAimCanceled;
-            }
+            aimAction.Enable();
+            aimAction.performed += OnAimPerformed;
+            aimAction.canceled += OnAimCanceled;
         }
+
+        walkAction = inputActions.FindAction("Walk");
+        if(walkAction != null)
+        {
+            walkAction.Enable();
+            walkAction.performed += OnWalkPerformed;
+            walkAction.canceled += OnWalkCanceled;
+        }
+        
     }
 
     private void OnDisable()
@@ -112,7 +122,13 @@ public class InputReader : ScriptableObject
         {
             aimAction.performed -= OnAimPerformed;
             aimAction.canceled -= OnAimCanceled;
-        }        
+        }
+
+        if(walkAction != null)
+        {
+            walkAction.performed -= OnWalkPerformed;
+            walkAction.canceled -= OnWalkCanceled;
+        }
     }
 
     //broadcast signals
@@ -164,6 +180,16 @@ public class InputReader : ScriptableObject
     private void OnAimCanceled(InputAction.CallbackContext context)
     {
         aimCanceledEvent?.Invoke();
+    }
+
+    private void OnWalkPerformed(InputAction.CallbackContext context)
+    {
+        walkEvent?.Invoke();
+    }
+
+    private void OnWalkCanceled(InputAction.CallbackContext context)
+    {
+        walkCanceledEvent?.Invoke();
     }
 
     //methods to disable player input when needed

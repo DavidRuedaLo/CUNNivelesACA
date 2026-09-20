@@ -28,7 +28,10 @@ public class PlayerIdleState : PlayerBaseClass
 
     public override void OnUpdate()
     {   
-
+        if(!player.IsGrounded())
+        {
+            player.stateMachine.ChangeState(player.jumpMidState);
+        }
     }
 
     public override void OnExit()

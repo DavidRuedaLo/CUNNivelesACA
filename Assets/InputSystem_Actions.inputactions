@@ -32,7 +32,7 @@
                     "id": "852140f2-7766-474d-8707-702459ba45f3",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false,
                     "priority": 0
                 },
@@ -70,6 +70,16 @@
                     "name": "Aim",
                     "type": "Button",
                     "id": "97f14e91-fc0e-4ea0-a946-bd68d109af8b",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "38b7ad55-c21f-4bac-b38b-135ae3971b9b",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -361,6 +371,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e76d4da4-d4f1-46c3-9037-5916a12b3ea0",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

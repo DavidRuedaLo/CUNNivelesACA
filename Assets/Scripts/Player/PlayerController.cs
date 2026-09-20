@@ -14,13 +14,19 @@ public class PlayerController : MonoBehaviour
     [Space(15)]
     [Header("Player Movement Attributes")]
     public float moveSpeed = 5f;
+    public float walkMultiplier = 0.5f;
     public float jumpForce = 8f;
+    public float jumpStartTime = 0.1f;
     public float jumpCutMultiplier = 0.5f;
     public float fallMultiplier = 2.5f;
     public float maxFallSpeed = -20f;
     public int maxJumps = 2;
     public int jumpsRemaining;
     public float landingDuration = 0.3f;
+
+    [Space(15)]
+    [Header("Player Ground Check Attributes")]
+    public float groundCheckOffset = 0.5f;
     public float sphereRadius = 0.3f;
     public float castDistance = 1.1f;
 
@@ -169,7 +175,9 @@ public class PlayerController : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return Physics.SphereCast(transform.position, sphereRadius, Vector3.down,
+        Vector3 castOrigin = transform.position + (Vector3.up * groundCheckOffset);
+
+        return Physics.SphereCast(castOrigin, sphereRadius, Vector3.down,
         out RaycastHit hit, castDistance, groundLayer);
     }
 
@@ -194,7 +202,7 @@ public class PlayerController : MonoBehaviour
 
             transform.rotation = Quaternion.LookRotation(intendedMovement);
 
-            transform.position += intendedMovement * moveSpeed * Time.fixedDeltaTime;
+            transform.position += intendedMovement * speed * Time.fixedDeltaTime;
         }
     }
 
@@ -284,6 +292,26 @@ public class PlayerController : MonoBehaviour
             //place to maybe put hurt animations
             Debug.Log("Player hit! Current HP: " + currentHP);
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(!debugMode) return;
+
+        Vector3 castOrigin = transform.position + (Vector3.up * groundCheckOffset);
+
+        bool isHit = Physics.SphereCast(castOrigin, sphereRadius, Vector3.down, out RaycastHit hit, castDistance, groundLayer);
+        Gizmos.color = isHit ? Color.green : Color.red;
+
+        //draw the starting sphere for ground checks
+        Gizmos.DrawWireSphere(castOrigin, sphereRadius);
+
+        //draw ending sphere at max cast discance
+        Vector3 endPosition = castOrigin + (Vector3.down * castDistance);
+        Gizmos.DrawWireSphere(endPosition, sphereRadius);
+
+        //draw coinnecting line
+        Gizmos.DrawLine(castOrigin, endPosition);
     }
 
 }

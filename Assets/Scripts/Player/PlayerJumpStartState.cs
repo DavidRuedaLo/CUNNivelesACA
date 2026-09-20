@@ -1,19 +1,23 @@
-using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerJumpStartState : PlayerBaseClass
 {
+    private float windupTimer;
+    private bool hasLaunched;
+    private bool jumpCanceledEarly;
     public PlayerJumpStartState(PlayerController player) : base(player)
     {
     }
-    
-
     public override void OnEnter()
     {
         player.inputReader.jumpCanceledEvent += OnJumpCanceled;
 
-        //add the jump force on state enter
-        player.rb.linearVelocity = new Vector3(player.rb.linearVelocity.x, player.jumpForce, player.rb.linearVelocity.z);
+        windupTimer = 0f;
+        hasLaunched = false;
+        jumpCanceledEarly = false;
+
+        //stop horizontal movement during windup
+        player.rb.linearVelocity = new Vector3(0f, player.rb.linearVelocity.y, 0f);
 
         player.ConsumeJump();
 
@@ -25,31 +29,59 @@ public class PlayerJumpStartState : PlayerBaseClass
 
     public override void OnUpdate()
     {
-        
+        if(!hasLaunched)
+        {
+            windupTimer += Time.deltaTime;
+
+            if(windupTimer >= player.jumpStartTime)
+            {
+                LaunchJump();
+            }
+        }
     }
 
     public override void OnFixedUpdate()
     {
-        player.HandleRotatedMovement(player.CurrentMoveInput, player.moveSpeed);
+        //restore movement once player has launched
+        if(hasLaunched)
+        {
+            player.HandleRotatedMovement(player.CurrentMoveInput, player.moveSpeed);
+        }        
 
-        //go to on air state once velocity goes negative (falling down)
-        if (player.rb.linearVelocity.y <= 0f)
+        //go to on air state once velocity goes negative (falling down) and player has jumped once
+        if (hasLaunched && player.rb.linearVelocity.y <= 0f)
         {
             player.stateMachine.ChangeState(player.jumpMidState);
         }
     }
 
-    public override void OnExit()
+    private void LaunchJump()
     {
-        player.inputReader.jumpCanceledEvent -= OnJumpCanceled;
+        hasLaunched = true;
+        //add the jump force
+        player.rb.linearVelocity = new Vector3(player.rb.linearVelocity.x, player.jumpForce, player.rb.linearVelocity.z);
+
+        if(jumpCanceledEarly)
+        {
+            player.rb.linearVelocity = new Vector3(player.rb.linearVelocity.x, (player.rb.linearVelocity.y * player.jumpCutMultiplier), player.rb.linearVelocity.z);
+        }
     }
 
     //redice jump once jump button is released
     private void OnJumpCanceled()
     {
-        if (player.rb.linearVelocity.y > 0f)
+        if(!hasLaunched)
+        {
+            jumpCanceledEarly = true;
+        }
+        else if (player.rb.linearVelocity.y > 0f)
         {
             player.rb.linearVelocity = new Vector3(player.rb.linearVelocity.x, (player.rb.linearVelocity.y * player.jumpCutMultiplier), player.rb.linearVelocity.z);
         }
+    }
+
+        public override void OnExit()
+    {
+        player.inputReader.jumpCanceledEvent -= OnJumpCanceled;
     }
 }
