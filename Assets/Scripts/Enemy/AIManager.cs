@@ -9,7 +9,7 @@ public class AIManager : MonoBehaviour
     public float detectRadius, attackRadius;
     public float rotationSpeed;
     public LayerMask layer;
-    public int hitPoints = 3;
+    public float currentHP, maxHP = 15f;
     private bool isAttacking = false;
     public NavMeshAgent agent;
     public Transform[] waypoints;
@@ -30,12 +30,15 @@ public class AIManager : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        currentHP = maxHP;
+        healthBarSlider.maxValue = maxHP;
     }
 
     void Update()
     {
         CheckState();
         healthBarSlider.transform.rotation = mainCamera.transform.rotation;
+        healthBarSlider.value = currentHP;
     }
 
     public void CheckState()
@@ -111,11 +114,11 @@ public class AIManager : MonoBehaviour
         isAttacking = false;
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float damage)
     {
-        hitPoints--;
-        healthBarSlider.value--;
-        if(hitPoints <= 0)
+        currentHP -= damage;
+        Debug.Log("Enemy HP: " + currentHP);
+        if(currentHP <= 0)
         {
             Destroy(gameObject);
         }

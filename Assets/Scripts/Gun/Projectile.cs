@@ -4,6 +4,7 @@ public class Projectile : MonoBehaviour
 {
     public float speed = 25f;
     public float lifespan = 3f;
+    public float damage = 5f;
     private Rigidbody rb;
 
     void Awake()
@@ -37,7 +38,7 @@ public class Projectile : MonoBehaviour
 
         if (enemy != null)
         {
-            enemy.TakeDamage();
+            enemy.TakeDamage(damage);
         }
 
         Destroy(gameObject);

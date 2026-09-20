@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4471874879329413073}
   - component: {fileID: 2389119748466258654}
   - component: {fileID: 7228537409063723223}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun_Pickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbf772f7c75ba443a4f02d1c4fb3019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponPickup
-  weaponPrefabToGrant: {fileID: 5709740154671669310, guid: 47fd10aebb7fa224d91e1ac73f4f635d, type: 3}
+  weaponPrefabToGrant: {fileID: 5709740154671669310, guid: d4c5b384f9708f04fbb75b7292ef6ff6, type: 3}
   pickupSound: {fileID: 8300000, guid: 0b6a1ada7342dea4e913c65e139a4fc0, type: 3}
 --- !u!65 &7228537409063723223
 BoxCollider:
