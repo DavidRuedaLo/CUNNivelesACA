@@ -11455,11 +11455,11 @@ Transform:
   m_GameObject: {fileID: 673788569}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 42.67, z: 72.57}
+  m_LocalPosition: {x: 0, y: 142.2, z: 72.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1088317456}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &673788571
 BoxCollider:
@@ -11707,7 +11707,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2037072202}
-  m_Father: {fileID: 366964138}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -16815,6 +16815,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6521077498223826222, guid: 4129e5b433a59eb4985c20b3e4bbcf9c, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: fb06a3a160feac84e89e94a5da5827b9, type: 3}
     - target: {fileID: 8754104430657965285, guid: 4129e5b433a59eb4985c20b3e4bbcf9c, type: 3}
       propertyPath: m_AdditionalShaderChannelsFlag
       value: 25
@@ -21236,7 +21240,7 @@ PrefabInstance:
       objectReference: {fileID: 1310137794}
     - target: {fileID: 4939265376292001752, guid: c417d667b13660f4fb8d4bcfe1828c5a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4961021204261062401, guid: c417d667b13660f4fb8d4bcfe1828c5a, type: 3}
       propertyPath: m_Mesh
@@ -30395,11 +30399,6 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
---- !u!224 &1539017795 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 3785927921824065197, guid: 4129e5b433a59eb4985c20b3e4bbcf9c, type: 3}
-  m_PrefabInstance: {fileID: 924079926}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1539427763
 Mesh:
   m_ObjectHideFlags: 0
@@ -40525,7 +40524,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1539017795}
+    m_TransformParent: {fileID: 366964138}
     m_Modifications:
     - target: {fileID: 1278513487870852967, guid: cbdb51702e9498540976f5f57b61f6f9, type: 3}
       propertyPath: m_Name
@@ -40650,3 +40649,5 @@ SceneRoots:
   - {fileID: 269286863}
   - {fileID: 590173530}
   - {fileID: 1283901750}
+  - {fileID: 673788570}
+  - {fileID: 690850014}
