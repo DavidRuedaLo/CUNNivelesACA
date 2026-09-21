@@ -186,7 +186,8 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 4294967295
-  hitPoints: 3
+  currentHP: 0
+  maxHP: 15
   agent: {fileID: 8013502066800768621}
   waypoints:
   - {fileID: 0}
