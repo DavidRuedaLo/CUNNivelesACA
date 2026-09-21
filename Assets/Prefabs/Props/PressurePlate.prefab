@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9046604748947274570}
   - component: {fileID: 1257176254647548220}
   - component: {fileID: 3207570840325029150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8397973871119626855}
   - component: {fileID: 7786869201562600546}
   - component: {fileID: 1691028394880724510}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PressurePlate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8684721294208223107}
   - component: {fileID: 3726269559633636691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 6005110987736188782}
   - component: {fileID: 5184747244825419143}
   - component: {fileID: 5959027667268710872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
