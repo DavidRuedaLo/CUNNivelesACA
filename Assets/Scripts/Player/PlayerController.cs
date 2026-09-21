@@ -82,6 +82,9 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
 
+        Cursor.visible = false;
+        inputReader.EnablePlayerInput();
+
 
         if(stateMachine != null)
         {
